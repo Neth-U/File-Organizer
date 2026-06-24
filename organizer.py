@@ -3,8 +3,9 @@ from pathlib import Path
 
 
 def main():
-    if sys.argv.__len__() > 1:
+    if len(sys.argv) == 2:
         selected_folder = Path(sys.argv[1])
+
     else:
         # Should open a GUI here. Added an error message for now
         print("No folder selected")
@@ -19,7 +20,7 @@ def main():
 
     for item in selected_folder.iterdir():
         if item.is_file():
-            extension = item.suffix
+            extension = item.suffix.lower()
             folder_type = extension_dir.get(extension, "Other")
 
             # create folder
@@ -29,6 +30,16 @@ def main():
             # move file into folder
             old_path = selected_folder / item.name
             new_path = new_folder / item.name
+
+
+            # check if there is already a file with the same name inside the folder and if so change current file name
+            # TODO
+            count=1
+            while new_path.exists():
+                new_name = item.stem + f" ({count})" + item.suffix
+                new_path = new_folder / new_name
+                print(new_path)
+                count += 1
 
             old_path.rename(new_path)
 
