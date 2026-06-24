@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-
+import json
 
 def main():
     if len(sys.argv) == 2:
@@ -33,7 +33,6 @@ def main():
 
 
             # check if there is already a file with the same name inside the folder and if so change current file name
-            # TODO
             count=1
             while new_path.exists():
                 new_name = item.stem + f" ({count})" + item.suffix
@@ -41,7 +40,15 @@ def main():
                 print(new_path)
                 count += 1
 
+            #move file
             old_path.rename(new_path)
+            #save the move info
+            organizer_logs[str(old_path)] = str(new_path)
+
+    #write data to json
+    with open("organizer_logs.json", "w") as file:
+        json.dump(organizer_logs, file, indent=4,ensure_ascii=False)
+
 
 
 # Extensions supported
@@ -109,6 +116,8 @@ FILE_TYPES = {
     ]
 }
 
+#LOGS
+organizer_logs = {}
 
 # Helper functions
 def get_dictionary():
