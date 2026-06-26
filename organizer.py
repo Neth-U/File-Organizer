@@ -8,9 +8,7 @@ def main():
         selected_folder = Path(sys.argv[1])
 
     else:
-        # Should open a GUI here. Added an error message for now
-        print("No folder selected")
-        return
+        selected_folder = Path(input("Select a folder: "))
 
     if (not selected_folder.is_dir()) or (not selected_folder.exists()):
         print("Folder not found")
@@ -20,10 +18,12 @@ def main():
 
     #Undo function
     #TODO
-    undo = input("undo changes? (y/n): ")
-    if undo == "y":
+    while True:
+        undo = input("undo changes? (y/n): ").lower()
+        if undo in ("y", "yes", "n", "no"):
+            break
+    if undo == "y" or undo == "yes":
         undo_func(selected_folder)
-
 
 
 # Extensions supported
