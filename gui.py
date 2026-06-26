@@ -9,8 +9,8 @@ class MyApp(QMainWindow):
         # Load the UI file
         uic.loadUi("./gui.ui", self)
 
+        self.setFixedSize(self.size())
         self.undoBtn.setVisible(False)
-        self.keepBtn.setVisible(False)
         self.msgBox.hide()
 
 
@@ -19,15 +19,20 @@ class MyApp(QMainWindow):
         self.undoBtn.clicked.connect(self.undo_actions)
 
     def get_folder_path(self):
-        folder_path = self.addressBar.text()
-        folder_path = Path(folder_path)
-        valid_folder = True if folder_path.is_dir() and folder_path.exists() else False
+        self.folder_path = self.addressBar.text()
+        if self.folder_path == "":
+            return
+        self.folder_path = Path(self.folder_path)
+        valid_folder = True if self.folder_path.is_dir() and self.folder_path.exists() else False
         if valid_folder:
-            main_logic(folder_path)
-
-    def undo_actions(self):
+            main_logic(self.folder_path)
         self.msgBox.setVisible(True)
+        self.msgBox.setText("Organizing successful!")
+        self.undoBtn.setVisible(True)
+    def undo_actions(self):
+        undo_func(self.folder_path)
         self.msgBox.setText("Undo changes successful")
+        self.undoBtn.setVisible(False)
 
 def gui_main():
     app = QApplication(sys.argv)

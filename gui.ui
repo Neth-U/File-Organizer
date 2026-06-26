@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>581</width>
-    <height>428</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,15 +49,15 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>200</y>
+      <y>170</y>
       <width>351</width>
-      <height>141</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Calibri Light</family>
-      <pointsize>16</pointsize>
+      <family>Arial Rounded MT Bold</family>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -77,7 +77,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>210</y>
+      <y>170</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -99,34 +99,6 @@ QPushButton:hover{
     </property>
     <property name="text">
      <string>Undo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="keepBtn">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>290</y>
-      <width>141</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color: #25a72e;
-    color: white;
-    border: 1px solid #25a72e;
-    border-radius: 14px;
-    padding: 5px;
-	font-size: 16px;
-}
-
-QPushButton:hover{
-	background-color:#43d64d;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>Keep Changes</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="addressBar">

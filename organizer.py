@@ -93,6 +93,8 @@ FILE_TYPES = {
 
 #LOGS
 organizer_logs = {}
+#CREATED FOLDERS
+created_folders = []
 
 # Helper functions
 def main_logic(selected_folder):
@@ -106,7 +108,9 @@ def main_logic(selected_folder):
 
             # create folder
             new_folder = selected_folder / folder_type
-            new_folder.mkdir(parents=True, exist_ok=True)
+            if not new_folder.exists():
+                created_folders.append(new_folder)
+                new_folder.mkdir(parents=True, exist_ok=True)
 
             # move file into folder
             old_path = selected_folder / item.name
@@ -146,7 +150,16 @@ def undo_func(parent_folder):
         old_path = Path(old_path)
         new_path = Path(new_path)
 
+        #move files
         move_file(item=new_path, old_path=new_path, new_path=old_path, new_folder=parent_folder, move_type="undo")
+        #delete folders
+        for folder in created_folders:
+            folder = Path(folder)
+            if folder.is_dir() and folder.exists():
+                if not any(folder.iterdir()):
+                    folder.rmdir()
+
+        created_folders.clear()
 
 
 if __name__ == "__main__":
