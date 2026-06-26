@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>581</width>
-    <height>330</height>
+    <width>721</width>
+    <height>327</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,16 +28,17 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: #39aea9;
-    color: white;
-    border: 1px solid #39aea9;
+    background-color: #AAA7AD;
+    color: black;
+	font: bold;
+    border: 1px solid #AAA7AD;
     border-radius: 14px;
     padding: 5px;
 	font-size: 16px;
 }
 
 QPushButton:hover{
-	background-color:#78d3ce;
+	background-color:#bdbabf;
 }
 </string>
     </property>
@@ -86,6 +87,7 @@ QPushButton:hover{
      <string notr="true">QPushButton {
     background-color: #f80000;
     color: white;
+	font: bold;
     border: 1px solid #f80000;
     border-radius: 14px;
     padding: 5px;
@@ -121,13 +123,42 @@ QPushButton:hover{
      <string>Enter folder path here</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="organizeBtn">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>80</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #39aea9;
+    color: black;
+	font: bold;
+    border: 1px solid #39aea9;
+    border-radius: 14px;
+    padding: 5px;
+	font-size: 16px;
+}
+
+QPushButton:hover{
+	background-color:#78d3ce;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Organize</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>581</width>
+     <width>721</width>
      <height>26</height>
     </rect>
    </property>

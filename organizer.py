@@ -16,8 +16,7 @@ def main():
 
     main_logic(selected_folder)
 
-    #Undo function
-    #TODO
+    # Undo function
     while True:
         undo = input("undo changes? (y/n): ").lower()
         if undo in ("y", "yes", "n", "no"):
@@ -91,16 +90,14 @@ FILE_TYPES = {
     ]
 }
 
-#LOGS
+# LOGS
 organizer_logs = {}
-#CREATED FOLDERS
+# CREATED FOLDERS
 created_folders = []
+
 
 # Helper functions
 def main_logic(selected_folder):
-    # Get extension directory
-    extension_dir = get_dictionary()
-
     for item in selected_folder.iterdir():
         if item.is_file():
             extension = item.suffix.lower()
@@ -118,17 +115,14 @@ def main_logic(selected_folder):
 
             move_file(item, old_path, new_path, new_folder)
 
-    # write data to json
-    with open("organizer_logs.json", "w") as file:
-        json.dump(organizer_logs, file, indent=4, ensure_ascii=False)
 
-
-def get_dictionary():
+def extension_map():
     extension_dictionary = {}
     for key, value in FILE_TYPES.items():
         for val in value:
             extension_dictionary[val] = key
     return extension_dictionary
+
 
 def move_file(item, old_path, new_path, new_folder, move_type="move"):
     # check if there is already a file with the same name inside the folder and if so change current file name
@@ -145,22 +139,28 @@ def move_file(item, old_path, new_path, new_folder, move_type="move"):
     if move_type == "move":
         organizer_logs[str(old_path)] = str(new_path)
 
+
 def undo_func(parent_folder):
     for old_path, new_path in organizer_logs.items():
         old_path = Path(old_path)
         new_path = Path(new_path)
 
-        #move files
+        # move files
         move_file(item=new_path, old_path=new_path, new_path=old_path, new_folder=parent_folder, move_type="undo")
-        #delete folders
-        for folder in created_folders:
-            folder = Path(folder)
-            if folder.is_dir() and folder.exists():
-                if not any(folder.iterdir()):
-                    folder.rmdir()
 
-        created_folders.clear()
+    # delete folders
+    for folder in created_folders:
+        folder = Path(folder)
+        if folder.is_dir() and folder.exists():
+            if not any(folder.iterdir()):
+                folder.rmdir()
 
+    created_folders.clear()
+    organizer_logs.clear()
+
+
+# Get extension directory
+extension_dir = extension_map()
 
 if __name__ == "__main__":
     main()
