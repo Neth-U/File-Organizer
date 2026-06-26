@@ -2,8 +2,6 @@ import sys
 from pathlib import Path
 import json
 
-from pygame.midi import Input
-
 
 def main():
     if len(sys.argv) == 2:
@@ -18,29 +16,7 @@ def main():
         print("Folder not found")
         return
 
-    # Get extension directory
-    extension_dir = get_dictionary()
-
-    for item in selected_folder.iterdir():
-        if item.is_file():
-            extension = item.suffix.lower()
-            folder_type = extension_dir.get(extension, "Other")
-
-            # create folder
-            new_folder = selected_folder / folder_type
-            new_folder.mkdir(parents=True, exist_ok=True)
-
-            # move file into folder
-            old_path = selected_folder / item.name
-            new_path = new_folder / item.name
-
-            move_file(item, old_path, new_path,new_folder)
-
-
-    #write data to json
-    with open("organizer_logs.json", "w") as file:
-        json.dump(organizer_logs, file, indent=4,ensure_ascii=False)
-
+    main_logic(selected_folder)
 
     #Undo function
     #TODO
@@ -119,6 +95,30 @@ FILE_TYPES = {
 organizer_logs = {}
 
 # Helper functions
+def main_logic(selected_folder):
+    # Get extension directory
+    extension_dir = get_dictionary()
+
+    for item in selected_folder.iterdir():
+        if item.is_file():
+            extension = item.suffix.lower()
+            folder_type = extension_dir.get(extension, "Other")
+
+            # create folder
+            new_folder = selected_folder / folder_type
+            new_folder.mkdir(parents=True, exist_ok=True)
+
+            # move file into folder
+            old_path = selected_folder / item.name
+            new_path = new_folder / item.name
+
+            move_file(item, old_path, new_path, new_folder)
+
+    # write data to json
+    with open("organizer_logs.json", "w") as file:
+        json.dump(organizer_logs, file, indent=4, ensure_ascii=False)
+
+
 def get_dictionary():
     extension_dictionary = {}
     for key, value in FILE_TYPES.items():
