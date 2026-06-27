@@ -1,6 +1,6 @@
 # File organizer
 
-A python application that automatically organizes files into folders based on their file type. The project includes both a command line interface (CLI) abd a graphical user interface (GUI) built with PyQt5.
+A python application that automatically organizes files into folders based on their file type. The project includes both a command line interface (CLI) and a graphical user interface (GUI) built with PyQt5.
 
 ## Features
 - Organizes files into categories based on their extensions.
