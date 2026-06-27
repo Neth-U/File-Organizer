@@ -9,6 +9,15 @@ A python application that automatically organizes files into folders based on th
 - An undo feature that restores moved files to their original locations during the current session
 - Command line interface and a GUI
 
+## Screenshots
+### Before
+<img src="screenshots/before.png" width="500"><hr>
+### After
+<img src="screenshots/after.png" width="500"><hr>
+### GUI
+<img src="screenshots/gui1.png" width="500">
+<img src="screenshots/gui2.png" width="500">
+
 ## Supported Categories
 - Images
 - Audio
