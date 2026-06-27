@@ -53,7 +53,7 @@ python organizer.py "C:\Users\Username\Downloads"
 Run:
 
 ```bash
-pip inn
+pip install pyQt5
 python gui.py
 ```
 
@@ -73,4 +73,4 @@ This project helped me practice,
 ## Future Improvements
 - Support for organizing files recursively through subfolders
 - Allow users to customize file categories and extensions
-- Package the application as a 
+- Package the application as a standalone executable

@@ -2,7 +2,6 @@ import sys
 from pathlib import Path
 
 
-
 def main():
     if len(sys.argv) == 2:
         selected_folder = Path(sys.argv[1])
